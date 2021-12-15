@@ -1,0 +1,110 @@
+:root{
+    --title-text-color:  rgba(73, 187, 187, 0.822);
+    --dark-background:  rgba(38, 21, 49, 0.822);
+}
+
+*, *::after *::before, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 64.2%;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: linear-gradient(45deg, rgb(70, 135, 179), rgb(33, 43, 46), rgb(29, 60, 88));
+    color: var(--title-text-color);
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--dark-background);
+    height: 80vh;
+}
+.main-sid {
+    flex-basis: 25%;
+}
+.main-sid .date {
+    padding: 1em;
+    text-align: center;
+}
+
+.todo-container {
+    padding: 1em;
+    text-align: center;
+}
+
+.todo-container .fa-calendar-plus{
+    font-size: 5em;
+    padding: .2em;
+    color:rgba(73, 187, 187, 0.822);
+    border-radius: 1em;
+    box-shadow: 1px 1px 1px 1px rgb(70, 135, 179);
+    cursor: pointer;
+}
+.addTodo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .1em solid rgb(70, 135, 179);
+    box-shadow: .5px .5px .5px .5px rgb(70, 135, 179);
+    border-radius: 5em;
+    width: 80%;
+    margin: .5em auto;
+}
+.todo-input {
+    border-radius: 5em;
+}
+.fa-plus {
+    background:rgba(21, 39, 49, 0.822);
+    font-size: 1.5em;
+    border-radius: 5em;
+    padding: .1em;
+    margin-left: .5em;
+}
+.calendar-container{
+    flex-basis: 75%;
+    height: 100%
+}
+.calendar {
+
+}
+.week-days{
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    text-align: center;
+    background-image: linear-gradient(45deg, rgb(26, 41, 51), rgb(16, 61, 75), rgb(76, 88, 99));;
+    height: 5em;
+}
+.week-days .day{
+    border-right: .1em solid rgb(70, 135, 179);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.month-days {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+}
+.month-days .cur-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:calc(70vh / 5);
+}
+
+.month-days .today {
+    background-color: rgb(45, 63, 49);
+}
