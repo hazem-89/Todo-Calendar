@@ -30,7 +30,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--dark-background);
-    height: 80vh;
 }
 .main-sid {
     flex-basis: 25%;
@@ -60,25 +59,81 @@ body {
     border: .1em solid rgb(70, 135, 179);
     box-shadow: .5px .5px .5px .5px rgb(70, 135, 179);
     border-radius: 5em;
-    width: 80%;
-    margin: .5em auto;
+    margin: 1em auto;
+    width: 200px;
+    display: none;
+}
+.addTodo-container.show {
+    display: flex;
 }
 .todo-input {
     border-radius: 5em;
 }
 .fa-plus {
-    background:rgba(21, 39, 49, 0.822);
+    background:rgba(43, 159, 221, 0.822);
     font-size: 1.5em;
     border-radius: 5em;
     padding: .1em;
     margin-left: .5em;
 }
+
+
+/* calendar styling */
+
 .calendar-container{
     flex-basis: 75%;
-    height: 100%
 }
-.calendar {
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 1em;
+    background-image: linear-gradient(50deg, rgb(57, 101, 167), rgb(27, 44, 49), rgb(53, 79, 126));
+}
 
+.cur-month {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    color: var(--title-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.month-change {
+    display: flex;
+    flex-direction: column;
+    padding-left: .2em;
+    justify-content: space-between;
+    color: black;
+    height: 80px;
+    position: absolute;
+    cursor: pointer;
+}
+.cur-year {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content:space-between;
+    font-size: 1.5em;
+}
+.cur-year p {
+    padding: 0 .5em;
+}
+.cur-year .fas {
+    cursor: pointer;
+    padding: .5em ;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    border-radius: 50%;
+}
+.cur-year .fas:hover {
+    background: rgba(24, 79, 109, 0.671);
 }
 .week-days{
     display: grid;
@@ -86,6 +141,9 @@ body {
     text-align: center;
     background-image: linear-gradient(45deg, rgb(26, 41, 51), rgb(16, 61, 75), rgb(76, 88, 99));;
     height: 5em;
+}
+.weekend{
+    color: red;
 }
 .week-days .day{
     border-right: .1em solid rgb(70, 135, 179);
@@ -102,7 +160,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height:calc(70vh / 5);
+    height:calc(100vh / 5);
+    cursor: pointer;
 }
 
 .month-days .today {
