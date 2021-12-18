@@ -3,88 +3,133 @@ window.addEventListener('load', maine);
 // lList of the months 
 const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
 
-//list of the week days 
-const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// code for leap year
+let shownDate;
 
 function maine() {
-    renderCalendar();
+    renderCalendar(new Date());
+    // displayListOfMonths()
     addEventListeners()
 }
 
-const  renderCalendar = () => {
+const  renderCalendar = (date) => {
+    shownDate = date;
+    const  month = date.getMonth();
+    const  year = date.getFullYear();
 
-    let date = new Date()
-    let  month = date.getMonth();
-    let  year = date.getFullYear();
-    let dayInMonth = new Date(year, month, 0).getDate();
+    const numOfDaysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysFromPrevMonth = new Date(year, month, 1).getDay();
+    const numOfDaysInPrevMonth = new Date(year, month, 0).getDate();
+    const numOfRows = Math.ceil((numOfDaysInMonth + daysFromPrevMonth) / 7); 
+    const daysFromNextMonth = numOfRows * 7 - numOfDaysInMonth - daysFromPrevMonth;
+    const today = new Date();
+    const currYear = today.getFullYear();
+    const currMonth = today.getMonth();
+    const currDate = today.getDate();
 
-    let firstDay = new Date(year, month, 1);
-    console.log(firstDay);
+    //  find weekends days
+    const dayOfWeek = new Date().getDay();
+    console.log(dayOfWeek);
+    isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0);
+    console.log(isWeekend);
 
-    let lastDay = new Date(year, month, 0);
-    console.log(lastDay);
+    const monthDays = document.querySelector('.month-days');
+    monthDays.innerHTML = '';
 
-
-    let calendar = document.querySelector('.calendar');
-    console.log(calendar);
-    let weekDays = document.querySelector('.week-days');
-    let monthDays = document.querySelector('.month-days');
-    console.log(monthDays);
-
-    
-
-   
-     monthDays.innerHTML = '';
-    for (let i = 0; i <= dayInMonth ; i++) {
-        console.log(dayInMonth);
+    for (let i = 1 - daysFromPrevMonth; i <= numOfDaysInMonth + daysFromNextMonth; i++) {
         let currDay = document.createElement('div');
-        if (i <= dayInMonth) {
-            currDay.classList.add('cur-day');
-            currDay.innerHTML = i ;
+        currDay.classList.add('month-day');
+
+        if (i < 1) {
+            currDay.innerText = numOfDaysInPrevMonth + i;
+            currDay.classList.add('prev-month-day');
+
+        } else if (i > numOfDaysInMonth) {
+            currDay.innerText = i - numOfDaysInMonth;
+            currDay.classList.add('next-month-day');
+        }
+        else {
+        currDay.innerText = i;
+        currDay.classList.add('cur-month-day');
         }
         monthDays.appendChild(currDay)
-        if (i === date.getDate()) {
+        if (currYear === year && currMonth === month && currDate === i) {
             currDay.classList.add('today')
         }
+       if (isWeekend) {
+        console.log(isWeekend);
+    }
     }
 
-
     // display the current month and current year
-    let currMonth = months[month] ;
-    console.log(currMonth);
+    let monthName = months[month] ;
     const currMonthElement = document.querySelector('.cur-month h2');
-    const currYear = document.querySelector('.cur-year p')
-    currMonthElement.innerHTML = currMonth,
-    currYear.innerHTML = year;
+    const yearNum = document.querySelector('.cur-year p')
+    currMonthElement.innerText = monthName,
+    yearNum.innerText = year;
 
 }
 
-
-function addEventListeners() {
-   
-    // change between months
-    // const nextMonth = document.querySelector('.fa-angle-up')
-    // const currMonthElement = document.querySelector('.cur-month h2');
-    // document.querySelector('.fa-angle-down').addEventListener('click', () => {
+function addEventListeners() { 
+    // Display all months 
+    // let monthList = document.querySelector('.list-of-months');
+    // document.querySelector('.month-changer').addEventListener('click', () => {
+    //     monthList.classList.add("show")
     // })
 
-
-
-    // change between years
-    let date = new Date();
-    let curYear = {value: date.getFullYear()}
+    let monthSelectors = document.querySelectorAll('.month');
+    for (const monthSelector of monthSelectors ) {
+        monthSelector.addEventListener('click', () => {
+            const newMonth = shownDate;
+            newMonth.setMonth(shownDate.getMonth()); 
+            renderCalendar(newMonth)
+        });
+        
+    }
     
-    const currYear = document.querySelector('.cur-year p');
+
+        // Change between Months
+    document.querySelector('.fa-angle-down').addEventListener('click', () => {
+        const newMonth = shownDate;
+        newMonth.setMonth(shownDate.getMonth() - 1); 
+        renderCalendar(newMonth)
+    })
+
+    document.querySelector('.fa-angle-up').addEventListener('click', () => {
+        const newMonth = shownDate;
+        newMonth.setMonth(shownDate.getMonth() + 1); 
+        renderCalendar(newMonth)
+    })
+
+
+
+    // Change between year
     document.querySelector('.fa-angle-right').addEventListener('click', () => {
-        // currYear.innerHTML = ++curYear.value
-        console.log('55');
+        const newYear = shownDate
+        newYear.setFullYear(shownDate.getFullYear() + 1);
+
+        renderCalendar(newYear)
     });
-    const prevYear= document.querySelector('.fa-angle-left');
-    prevYear.addEventListener('click', () => {
-        currYear.innerHTML = --curYear.value
+
+
+    document.querySelector('.fa-angle-left').addEventListener('click', () => {
+        const newYear = shownDate
+        newYear.setFullYear(shownDate.getFullYear() - 1);
+
+        renderCalendar(newYear)
     });
+
+    const todoList = document.querySelector('.todo-list-container');
+    console.log(todoList);
+    const days = document.querySelectorAll('.month-day');
+    console.log(days);
+    for (const day of days) {
+         day.addEventListener('click', () =>{
+
+        todoList.classList.add('show');
+        console.log('.month-day');         
+    })
+    }
+    
    
 }
 

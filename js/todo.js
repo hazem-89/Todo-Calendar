@@ -4,6 +4,7 @@ window.addEventListener('load', todoMAin);
 function todoMAin() {
     displayDateAndTime()
     startClock()
+    todoAddEventListeners()
 }
 
 function displayDateAndTime() {
@@ -40,18 +41,17 @@ function startClock() {
     hrs = (hrs < 10) ? "0" + hrs : hrs;
     mins = (mins < 10) ? "0" + mins : mins;
     secs = (secs < 10) ? "0" + secs : secs;
-   
     
     document.querySelector('.today-time').innerHTML = clock;
     setTimeout(startClock, 1000);
-
-
 }
 
-function addEventListeners() {
+function todoAddEventListeners() {
     const addTodoBox = document.querySelector(".addTodo-container")
     document.querySelector('.fa-calendar-plus').addEventListener('click', () =>{
         addTodoBox.classList.toggle('show');           
     })
+
+    
 
 }
