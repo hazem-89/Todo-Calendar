@@ -1,12 +1,8 @@
-window.addEventListener('load', todayMain);
+window.addEventListener('load', () => {
 
-
-function todayMain() {
-    displayDateAndTime()
-    startClock()
-}
-function displayDateAndTime() {
-    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+/** Display date  */
+function displayDate() {
+    const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dateElement = document.querySelector('.today-title');
     const timeElement = document.querySelector('.today-date');
     const date = new Date();
@@ -16,7 +12,7 @@ function displayDateAndTime() {
     dateElement.innerText = curDay;
     timeElement.innerText = todayDate;
 }
-function startClock() {
+const startClock = () =>{
     date = new Date();
     let hrs = date.getHours();
     let mins = date.getMinutes();
@@ -30,3 +26,6 @@ function startClock() {
     document.querySelector('.today-time').innerHTML = clock;
     setTimeout(startClock, 1000);
 }
+displayDate()
+startClock()
+});

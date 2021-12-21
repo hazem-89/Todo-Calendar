@@ -4,17 +4,22 @@ window.addEventListener('load',
     const monthDays = document.querySelector('.month-days');
     const currMonthElement = document.querySelector('.cur-month h2');
     const yearNum = document.querySelector('.cur-year p')
-
+    
     // lList of the months 
     const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
 
+    let todoCount;
     const clickHandler = (dateString) => {
         const prevSelectedDate = document.querySelector('#l'+ selectedDate);
         prevSelectedDate.classList.remove('selected');
+        const todoListTitle = document.querySelector(".todo-list-title");
         todoList.innerHTML = '';
         const todos = todoStore[dateString]
         if (todos) {
+        
             for (let i = 0; i < todos.length; i++) {
+                todoCount = todos.length;
+                console.log( todoCount);
                 const todoItem = document.createElement('li');
                 todoItem.classList.add('todo-item');
                 todoItem.innerText = todos[i];
@@ -25,7 +30,12 @@ window.addEventListener('load',
                 deleteButton.innerHTML = '<i class="far fa-trash"></i>';
                 deleteButton.classList.add('delete-btn');
                 todoItem.appendChild(deleteButton);
+                todoListTitle.innerText = 'Your tasks list for today';
             }
+          
+        }  else {
+            
+            todoListTitle.innerText = "No tasks for today"
         }
         selectedDate = dateString;
         const currSelectedDate = document.querySelector('#l'+ selectedDate);
@@ -44,20 +54,14 @@ window.addEventListener('load',
         const numOfDaysInPrevMonth = new Date(year, month, 0).getDate();
         const numOfRows = Math.ceil((numOfDaysInMonth + daysFromPrevMonth) / 7); 
         const daysFromNextMonth = numOfRows * 7 - numOfDaysInMonth - daysFromPrevMonth;
-        
-    
-        //  find weekends days
-        // const dayOfWeek = new Date().getDay();
-        // console.log(dayOfWeek);
-        // isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0);
-        // console.log(isWeekend);
-    
-        
+
         monthDays.innerHTML = '';
-    
         for (let i = 1 - daysFromPrevMonth; i <= numOfDaysInMonth + daysFromNextMonth; i++) {
             const currDay = document.createElement('div');
             currDay.classList.add('month-day');
+          
+
+
             let dayDate = i;
             let dayMonth = month;
             let dayYear = year;
@@ -83,6 +87,13 @@ window.addEventListener('load',
                 currDay.classList.add('cur-month-day');
             }
             currDay.innerText = dayDate;
+            const todoCountDisplay = document.createElement('span');
+            todoCountDisplay.className = 'todo-count';
+            todoCountDisplay.innerText = 6;
+            currDay.appendChild(todoCountDisplay);
+            
+            
+
             const dateString = dayYear + '-' + dayMonth + '-' + dayDate;
             if (dateString === selectedDate) {
                 currDay.classList.add('selected')
@@ -95,9 +106,7 @@ window.addEventListener('load',
             if (currYear === year && currMonth === month && currDate === i) {
                 currDay.classList.add('today')
             }
-        //    if (isWeekend) {
-        //     console.log(isWeekend);
-        // }
+       
         }
     
         // display the current month and current year
@@ -149,5 +158,4 @@ window.addEventListener('load',
     renderCalendar(new Date());
     addEventListeners()
     clickHandler(selectedDate)
-}
-);
+});
