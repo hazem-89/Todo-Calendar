@@ -1,6 +1,6 @@
 :root{
-    --title-text-color:  rgba(73, 187, 187, 0.822);
-    --dark-background:  rgba(31, 24, 36, 0.952);
+    --title-text-color:  rgba(121, 24, 24, 0.822);
+    --dark-background:  rgb(31, 24, 36);
 }
 
 *, *::after *::before, *::before{
@@ -10,163 +10,200 @@
 }
 html {
     font-size: 64.2%;
+    font-family: 'Courier New', Courier, monospace;
 }
 body {
     margin: 0;
     padding: 0;
 }
-
+/* header styling */
 .header {
     height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-    background-image: linear-gradient(45deg, rgb(70, 135, 179), rgb(33, 43, 46), rgb(29, 60, 88));
+    background-image: linear-gradient(45deg, rgb(70, 135, 179), rgba(33, 43, 46, 0.836), rgb(29, 60, 88));
     color: var(--title-text-color);
 }
 
+/* Styling for both section todo and calendar */
 .main-container {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--dark-background);
 }
+
+/* styling todo container */
 .main-sid {
     flex-basis: 25%;
+    background-image: linear-gradient(-150deg, rgb(70, 135, 179), rgba(33, 43, 46, 0.836), rgb(29, 60, 88));
 }
+
+/* dat and clock container */
 .main-sid .date {
-    padding: 1em;
     text-align: center;
 }
+.today-title {
+    font-size: 1.5em;
+    color: var(--title-text-color);
+}
+.today-date, .today-time {
+    color: rgb(66, 40, 23);
+    font-weight: bolder;
+}
 
+/* styling for todo container */
 .todo-container {
-    padding: 1em;
+    padding: .5em;
     text-align: center;
 }
 
+/* button for display add todo container */
 .todo-container .fa-calendar-plus{
-    font-size: 5em;
-    padding: .2em;
-    color:rgba(73, 187, 187, 0.822);
+    font-size: 3em;
+    padding: .3em;
+    color:rgba(88, 22, 6, 0.822);
     border-radius: 1em;
-    box-shadow: 1px 1px 1px 1px rgb(70, 135, 179);
+    box-shadow: 0px 0px 8px 3px rgb(70, 172, 179);
     cursor: pointer;
 }
+
+/* add to do container display none */
 .addTodo-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
     border: .1em solid rgb(70, 135, 179);
-    box-shadow: .5px .5px .5px .5px rgb(70, 135, 179);
+    box-shadow: 0px 0px 1px 2px rgb(70, 135, 179);
     border-radius: 1em;
-    width: 23%;
-    height: 150px;
     display: none;
+    min-width: 200px;
     position: absolute;
     top: 40vh;
     left: 1em;
     background: var(--dark-background);
     color: #f1f1f1;
 }
+
+/* add to do container display flex */
 .addTodo-container.show {
     display: flex;
 }
+
+.addTodo-container > div {
+    padding: .5em 0;
+}
+
 .addTodo-container label {
     padding-top: .5em;
     text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
 }
 .todoInputs {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.date-inp {
-    display: flex;
     flex-direction: column;
-    width: 30px;
-    font-size: .5em;
-    border: none;
-    height: 4em;
-    margin-left: .5em;
 }
 
-.todo-inp, 
-.date-inp  {
+.todo-inp  {
     border-radius: .5em;
+    padding: .2em;
 }
+
+/* add todo buttons styling */
 .addTodo-btns {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: .5em;
-}
-.cancel-add-todo{
-    height: 3em;
-    margin-left: .5em;
-    border-radius: .5em;
-    border: none;
-    background:rgba(43, 159, 221, 0.822);
+    padding-bottom: .5em;
 }
 .addTodo-btn {
-    background:rgba(43, 159, 221, 0.822);
-    font-size: 3em;
-    padding: .1em;
-    width: 50px;
+    background:rgba(20, 78, 109, 0.822);
+    font-size: 1.5em;
+    padding: .2em;
+    width: 30px;
     border-radius: .5em;
+    cursor: pointer;
 }
+.addTodo-btn:hover {
+    background: rgb(20, 199, 101);
+    color: rgb(19, 128, 218);
+}
+.cancel {
+    color: rgba(90, 185, 209, 0.719);
+    width: auto;
+    margin-left: .5em;
+    border: none;
+    font-weight: bolder;
+}
+.cancel:hover{
+    background: rgb(199, 56, 20);
+    color: #f1f1f1;
+}
+
+/* styling for todo list  */
 .todo-list-container{
     background:rgb(16, 61, 75);
     height: 200px;
-    /* display: none; */
     margin-top: 1em;
     border-radius: .5em;
     box-shadow: 1px 1px 6px 1px rgb(23, 138, 167);
 }
-.todo-list-container.show{
-    display: block;
-}
+
 .todo-list-header {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.filter-todo {
-    width: 4em;
-    height: 3em;
-    font-size: 1em;
-    margin-left: .5em;
-    border-radius: 1em;
-}
+
 .todo-list {
-    margin: 0;
-    padding: 0;
+    list-style: none;
+    padding: .2em;
+    
 }
-.todo {
+.todo-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em;
     list-style: none;
+    margin-bottom: .2em;
+    background:rgba(22, 74, 90, 0.637);
+    padding-left: .2em;
+    font-weight: bold;
+    border: none;
+    border-radius: .3em;
+}
+.delete-btn {
+    background:rgba(226, 7, 7, 0.829);
+    border: none;
+    border-radius: .3em;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    color: rgba(226, 7, 7, 0.829);
+    background:rgb(167, 187, 204)
 }
 .todo-list-title {
     color: #f1f1f1;
+    font-size: 1em;
 }
 
 .todo-deleted {
     animation: slide 1s ease-out;
+    display: none;
 }
 @keyframes slide {
     0% { left: 0 }
     100% {left: -10em}
 }
+
 /* calendar styling */
 
 .calendar-container{
     flex-basis: 75%;
+    background-image: linear-gradient(135deg, rgb(48, 93, 122), rgba(55, 73, 78, 0.637),rgba(55, 73, 78, 0.322), rgb(29, 60, 88));
 }
 .calendar-header {
     display: flex;
@@ -174,7 +211,6 @@ body {
     justify-content: center;
     justify-content: space-between;
     padding: 0 1em;
-    background-image: linear-gradient(50deg, rgb(57, 101, 167), rgb(27, 44, 49), rgb(53, 79, 126));
     height: 8em;
 }
 
@@ -188,45 +224,44 @@ body {
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-
 }
 .month-change {
     display: flex;
     flex-direction: column;
     padding-left: .2em;
     justify-content: space-between;
-    color: black;
     height: 80px;
     position: absolute;
-    cursor: pointer;
 }
-
-
-
+.fas { 
+    cursor: pointer;
+    color: rgb(20, 178, 199);
+    padding: .3em;
+    font-size: .8em;
+}
+.fas:hover {
+    background: rgb(19, 159, 235);
+    border-radius: 50%;
+    color: #f1f1f1;
+}
 .cur-year {
     display: flex;
     align-items: center;
     justify-content: center;
     justify-content:space-between;
     font-size: 1.5em;
+    color: rgb(39, 24, 14);
+    font-weight: bolder;
 }
 .cur-year p {
     padding: 0 .5em;
 }
-.cur-year .fas {
-    cursor: pointer;
-    padding: .5em;
-    border-radius: 50%;
-}
-.cur-year .fas:hover {
-    background: rgba(24, 79, 109, 0.671);
-}
+
 .week-days{
     display: grid;
     grid-template-columns: repeat(7, auto);
     text-align: center;
-    background-image: linear-gradient(45deg, rgb(26, 41, 51), rgb(16, 61, 75), rgb(76, 88, 99));;
-    height: 5em;
+    height: 2em;
 }
 .weekend{
     color: red;
@@ -244,13 +279,25 @@ body {
 }
 .month-day {
     display: flex;
-    align-items: center;
     justify-content: center;
+    text-align: center;
+    flex-direction: column;
     min-height:calc(100vh / 8);
     cursor: pointer;
+    border-radius: 1em;
+}
+.todo-count {
+    padding: .5em;
+    background-color: rgba(118, 158, 245, 0.445);
+    border-radius: 1em;
+    height: 1em;
+    width: 1em;
+    text-align: center;
+    float: left;
+    font-size: .6em;
 }
 .month-day:hover {
-    background: rgba(102, 196, 247, 0.192);
+    background: rgb(20, 80, 112);
 }
 .weekend{
     color: red;
@@ -260,9 +307,9 @@ body {
     opacity: .5;
 }
 .month-days .today {
-    background-color: rgb(45, 63, 49);
+    background-color: rgb(34, 165, 62);
 }
 
 .selected {
-    border: 1px solid red;
+    border: 1px solid rgb(255, 94, 0);
 }
