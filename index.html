@@ -9,15 +9,17 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
+    <script src="./js/global.js"></script>
     <script src="./js/calendar.js"></script>
     <script src="./js/todo.js"></script>
+    <script src="./js/today.js"></script>
     <title>Todo-Calendar</title>
 </head>
 
 <body>
     <header class="header">
         <div class="main-title">
-            <h1 class="title">Todo-Calendar</h1>
+            <h1 class="title">To-Do Calendar</h1>
         </div>
     </header>
     <main class="main-container">
@@ -35,14 +37,21 @@
             <div class="todo-container">
                 <i class="far fa-calendar-plus"></i>
                 <div class="addTodo-container">
-                    <input type="text" class="todo-input">
-                    <i class="fas fa-plus"></i>
+                    <label class="addTodo-title" for="todo">Add Todo</label>
+                    <div class="todoInputs">
+                        <input type="text" class="todo-inp">
+                    </div>
+                    <div class="addTodo-btns">
+                        <i class="fas fa-plus addTodo-btn"></i>
+                        <button class="cancel-add-todo">Cancel</button>
+                    </div>
                 </div>
                 <div class="todo-list-container">
+                    <div class="todo-list-header">
+                        <h2 class="todo-list-title">Your tasks list for today</h2>
+
+                    </div>
                     <ul class="todo-list">
-                        <li></li>
-                        <li></li>
-                        <li></li>
                     </ul>
                 </div>
             </div>

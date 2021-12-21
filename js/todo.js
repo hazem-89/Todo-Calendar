@@ -1,57 +1,57 @@
-window.addEventListener('load', todoMAin);
+window.addEventListener('load', () => {
 
 
-function todoMAin() {
-    displayDateAndTime()
-    startClock()
-    todoAddEventListeners()
-}
-
-function displayDateAndTime() {
-    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const dateElement = document.querySelector('.today-title')
-    const timeElement = document.querySelector('.today-date')
-    let date = new Date();
-    let today = date.getDay();
-    let todayDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-    curDay = weekDays[today];
-    dateElement.innerHTML = curDay;
-    timeElement.innerText = todayDate;
-}
-
-function displayTodo() {
+/** add a task to the todo list */
+const addTodo = () => {
+    const todoInp = document.querySelector('.todo-inp');
+    const todoList = document.querySelector('.todo-list');    
     
-
+    // Creat todo-list
+    const todoItem = document.createElement('li');
+    todoItem.classList.add('todo-item');
+    todoItem.innerText = todoInp.value;
+    todoList.appendChild(todoItem);
+    // creat delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '<i class="far fa-trash"></i>';
+    deleteButton.classList.add('delete-btn');
+    todoItem.appendChild(deleteButton);
+    if (!todoStore[selectedDate]) {
+        todoStore[selectedDate] = [];
+    }
+    todoStore[selectedDate].push(todoInp.value);
 }
 
-function addTodo() {
-    
-}
 
-function showTodoList() {
-    
-}
-function startClock() {
-    date = new Date();
-    let hrs = date.getHours();
-    let mins = date.getMinutes();
-    let secs = date.getSeconds();
-    let clock = hrs + ":" + mins + ":" + secs;
-    
-    hrs = (hrs < 10) ? "0" + hrs : hrs;
-    mins = (mins < 10) ? "0" + mins : mins;
-    secs = (secs < 10) ? "0" + secs : secs;
-    
-    document.querySelector('.today-time').innerHTML = clock;
-    setTimeout(startClock, 1000);
-}
 
-function todoAddEventListeners() {
+
+/** add eventlisteners for all buttons/ function  */
+const addEventListeners =() => {
+    // display add to todo input
     const addTodoBox = document.querySelector(".addTodo-container")
     document.querySelector('.fa-calendar-plus').addEventListener('click', () =>{
-        addTodoBox.classList.toggle('show');           
+        addTodoBox.classList.add('show');           
+    })
+
+ // Hide add to todo input    
+        document.querySelector('.cancel-add-todo').addEventListener('click', () =>{
+        addTodoBox.classList.remove('show');
+   })
+
+    //add to todo list
+    document.querySelector('.addTodo-btn').addEventListener('click', () =>{
+        const todoInp = document.querySelector('.todo-inp');
+        //add to to-do list
+        addTodo()
+        todoInp.value = '';
+   
     })
 
     
-
+    const x = document.querySelectorAll('.delete-btn');
+    console.log(x);
+    // x.addEventListener('click', deleteTodo, true);
 }
+addEventListeners()
+
+});

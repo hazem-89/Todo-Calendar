@@ -56,35 +56,113 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     border: .1em solid rgb(70, 135, 179);
     box-shadow: .5px .5px .5px .5px rgb(70, 135, 179);
-    border-radius: 5em;
-    margin: 1em auto;
-    width: 200px;
+    border-radius: 1em;
+    width: 23%;
+    height: 150px;
     display: none;
+    position: absolute;
+    top: 40vh;
+    left: 1em;
+    background: var(--dark-background);
+    color: #f1f1f1;
 }
 .addTodo-container.show {
     display: flex;
 }
-.todo-input {
-    border-radius: 5em;
+.addTodo-container label {
+    padding-top: .5em;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
 }
-.fa-plus {
-    background:rgba(43, 159, 221, 0.822);
-    font-size: 1.5em;
-    border-radius: 5em;
-    padding: .1em;
+.todoInputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-inp {
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    font-size: .5em;
+    border: none;
+    height: 4em;
     margin-left: .5em;
+}
+
+.todo-inp, 
+.date-inp  {
+    border-radius: .5em;
+}
+.addTodo-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .5em;
+}
+.cancel-add-todo{
+    height: 3em;
+    margin-left: .5em;
+    border-radius: .5em;
+    border: none;
+    background:rgba(43, 159, 221, 0.822);
+}
+.addTodo-btn {
+    background:rgba(43, 159, 221, 0.822);
+    font-size: 3em;
+    padding: .1em;
+    width: 50px;
+    border-radius: .5em;
 }
 .todo-list-container{
     background:rgb(16, 61, 75);
     height: 200px;
-    display: none;
+    /* display: none; */
+    margin-top: 1em;
+    border-radius: .5em;
+    box-shadow: 1px 1px 6px 1px rgb(23, 138, 167);
 }
 .todo-list-container.show{
     display: block;
 }
+.todo-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter-todo {
+    width: 4em;
+    height: 3em;
+    font-size: 1em;
+    margin-left: .5em;
+    border-radius: 1em;
+}
+.todo-list {
+    margin: 0;
+    padding: 0;
+}
+.todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    list-style: none;
+}
+.todo-list-title {
+    color: #f1f1f1;
+}
 
+.todo-deleted {
+    animation: slide 1s ease-out;
+}
+@keyframes slide {
+    0% { left: 0 }
+    100% {left: -10em}
+}
 /* calendar styling */
 
 .calendar-container{
@@ -98,7 +176,6 @@ body {
     padding: 0 1em;
     background-image: linear-gradient(50deg, rgb(57, 101, 167), rgb(27, 44, 49), rgb(53, 79, 126));
     height: 8em;
-
 }
 
 .cur-month {
@@ -123,24 +200,7 @@ body {
     position: absolute;
     cursor: pointer;
 }
-/* .list-of-months {
-    background: var(--dark-background);
-    position: absolute;
-    top: 20vh; left: 25%;
-    width: 75%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    display: none;
-}
-.list-of-months.show{
-    display: grid;
-}
-.list-of-months .month{
-    padding: .75em;
-    color: aqua;
-    margin: auto;
-    text-transform: uppercase;
-} */
+
 
 
 .cur-year {
@@ -186,8 +246,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height:calc(100vh / 8);
+    min-height:calc(100vh / 8);
     cursor: pointer;
+}
+.month-day:hover {
+    background: rgba(102, 196, 247, 0.192);
 }
 .weekend{
     color: red;
@@ -198,4 +261,8 @@ body {
 }
 .month-days .today {
     background-color: rgb(45, 63, 49);
+}
+
+.selected {
+    border: 1px solid red;
 }
