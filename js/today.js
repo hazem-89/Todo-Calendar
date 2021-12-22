@@ -17,12 +17,11 @@ const startClock = () =>{
     let hrs = date.getHours();
     let mins = date.getMinutes();
     let secs = date.getSeconds();
-    let clock = hrs + ":" + mins + ":" + secs;
-    
+
     hrs = (hrs < 10) ? "0" + hrs : hrs;
     mins = (mins < 10) ? "0" + mins : mins;
     secs = (secs < 10) ? "0" + secs : secs;
-    
+    let clock = hrs + ":" + mins + ":" + secs;
     document.querySelector('.today-time').innerHTML = clock;
     setTimeout(startClock, 1000);
 }
