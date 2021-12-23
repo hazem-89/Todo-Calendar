@@ -269,7 +269,6 @@ button {
 .cur-year p {
     padding: 0 .5em;
 }
-
 .week-days{
     display: grid;
     grid-template-columns: repeat(7, auto);
@@ -356,11 +355,24 @@ button {
         background: var(--dark-background);
         height: max-content;
     }
+    .addTodo-container {
+        max-width: 400px;
+    }
+    .todo-inp {
+        min-width: 200px;
+    }
     .main-sid {
         flex-basis: 100%;
     }
     .display-calender {
         display: block;
         margin-left: .5em;
+    }
+    .day,
+    .month-day {
+        color: #f1f1f1b0;
+    }
+    .weekend {
+        color: rgba(255, 0, 0, 0.678);
     }
   }
