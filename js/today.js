@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
 
 /** Display date  */
-function displayDate() {
+const displayDate = () =>  {
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dateElement = document.querySelector('.today-title');
     const timeElement = document.querySelector('.today-date');
@@ -12,6 +12,8 @@ function displayDate() {
     dateElement.innerText = curDay;
     timeElement.innerText = todayDate;
 }
+
+/** Start the clock  */
 const startClock = () =>{
     date = new Date();
     let hrs = date.getHours();
