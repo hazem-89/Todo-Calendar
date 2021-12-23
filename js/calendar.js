@@ -5,31 +5,32 @@ window.addEventListener('load',
     const currMonthElement = document.querySelector('.cur-month h2');
     const yearNum = document.querySelector('.cur-year p')
     
-    // lList of the months 
+    /** list of the months */
     const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-
-    // let todoCount;
-    // console.log(todoCount);
     
+    /** display the todo list for the chosen day by clicking on calendar day */
     const clickHandler = (dateString) => {
         const prevSelectedDate = document.querySelector('#l'+ selectedDate);
         prevSelectedDate.classList.remove('selected');
         selectedDate = dateString;
-        const todoListTitle = document.querySelector(".todo-list-title");
         todoList.innerHTML = '';
-        const todos = todoStore[dateString]
+        const todoListTitle = document.querySelector(".todo-list-title");
+        const todos = todoStore[dateString];
         if (todos)  {
+            // giving each todo a unique key and sorted and add to the list 
             Object.keys(todos).sort((a, b) => a - b).forEach( key => addTodo(key, todos[key]));
-          
+            todoListTitle.innerText = "Your tasks for today"
         }  else {
-            
+            // changing the todo list title incase there no todos 
             todoListTitle.innerText = "No tasks for today"
         }
         const currSelectedDate = document.querySelector('#l'+ selectedDate);
         currSelectedDate.classList.add('selected');
-    }
+        document.querySelector('.calendar-container').classList.remove('show')
+    } 
 
     let shownDate;
+    /** render the calender  */
     const  renderCalendar = (date) => {
         shownDate = date;
         const  month = date.getMonth();
@@ -47,8 +48,6 @@ window.addEventListener('load',
 
         // clear the calendar innerHTML
         monthDays.innerHTML = '';
-
-
         for (let i = 1 - daysFromPrevMonth; i <= numOfDaysInMonth + daysFromNextMonth; i++) {
             const currDay = document.createElement('div');
             currDay.classList.add('month-day');
@@ -57,16 +56,17 @@ window.addEventListener('load',
             let dayYear = year;
             if (i < 1) {
                 dayMonth = month - 1;
+                // display days from the prev month
                 if (dayMonth === -1 ) {
                     dayMonth = 11;
                      //declare the prev year 
                     dayYear = year - 1;
                 }
-
                 //find the prev month 
                 dayDate = numOfDaysInPrevMonth + i;
                 currDay.classList.add('prev-month-day');
-    
+
+            // display days from the next month
             } else if (i > numOfDaysInMonth) {
                 dayMonth = month + 1;
                 if (dayMonth === 12 ) {
@@ -74,7 +74,6 @@ window.addEventListener('load',
                     // find next year
                     dayYear = year + 1;
                 }
-
                 // find next month
                 dayDate = i - numOfDaysInMonth;
                 currDay.classList.add('next-month-day');
@@ -82,6 +81,7 @@ window.addEventListener('load',
             else {
                 currDay.classList.add('cur-month-day');
             }
+             // display days from the curr month
             currDay.innerText = dayDate;
             // define the selected day to display the todo
             const dateString = dayYear + '-' + dayMonth + '-' + dayDate;
@@ -93,34 +93,29 @@ window.addEventListener('load',
                 clickHandler(dateString);
             })
             monthDays.appendChild(currDay)
-            if (currYear === year && currMonth === month && currDate === i) {
-                currDay.classList.add('today')
-            }
-              // display number of todos for each day
-          
+
+            // display number of todos for each day
               if (todoStore[dateString]) {
                  const todoCountDisplay = document.createElement('span');
                  todoCountDisplay.className = 'todo-count';
                  todoCountDisplay.innerText =  Object.keys(todoStore[dateString]).length;
                  currDay.appendChild(todoCountDisplay);
               }
-            
-              
-       
+              if (currYear === year && currMonth === month && currDate === i) {
+                currDay.classList.add('today')
+                document.querySelector('.todo-count').classList.add('todayTodos');
+            }
         }
     
         // display the current month and current year
         let monthName = months[month] ;
         currMonthElement.innerText = monthName,
         yearNum.innerText = year;
-    
     }
-    
 
     /** all EventListeners */
     const  addEventListeners = () => { 
-       
-            // Change between Months
+        // Change between Months
         document.querySelector('.fa-angle-down').addEventListener('click', () => {
             const newMonth = shownDate;
             newMonth.setMonth(shownDate.getMonth() - 1); 
@@ -132,14 +127,13 @@ window.addEventListener('load',
             newMonth.setMonth(shownDate.getMonth() + 1); 
             renderCalendar(newMonth)
         })
+
         // Change between years
         document.querySelector('.fa-angle-right').addEventListener('click', () => {
             const newYear = shownDate
             newYear.setFullYear(shownDate.getFullYear() + 1);
             renderCalendar(newYear)
         });
-    
-    
         document.querySelector('.fa-angle-left').addEventListener('click', () => {
             const newYear = shownDate
             newYear.setFullYear(shownDate.getFullYear() - 1);

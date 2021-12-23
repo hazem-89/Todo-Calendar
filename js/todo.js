@@ -1,17 +1,6 @@
 window.addEventListener('load', () => {
  const todoInp = document.querySelector('.todo-inp');
  
-// function saveLocal(todo) {
-	
-// 	if (localStorage.getItem('todoStore[selectedDate]') === null) {
-// 		todoStore[selectedDate] = [];
-// 	}else {
-// 		todoStore[selectedDate] = JSON.parse(localStorage.getItem('	todoStore[selectedDate]'));
-// 	}
-// 	todoStore[selectedDate].push(todo)
-// 	localStorage.setItem("todos", JSON.stringify(todoStore[selectedDate]));
-// }
-
 /** add eventListeners for all buttons/ function  */
 const addEventListeners =() => {
     // display add to todo input
@@ -31,16 +20,23 @@ const addEventListeners =() => {
         addTodo( new Date().getTime(), todoInp.value)
         todoInp.value = '';
         let selectedDayCount = document.querySelector('.selected .todo-count');
+        // increase the todos count when a todo is added 
         if (selectedDayCount) {
-            selectedDayCount.innerText ++; 
+            selectedDayCount.innerText ++;
+        // creat a todo count span
         } else {
             selectedDayCount = document.createElement('span');
             selectedDayCount.classList.add('todo-count');
             document.querySelector('.selected').appendChild(selectedDayCount);
-
+            const todoListTitle = document.querySelector(".todo-list-title");
+            todoListTitle.innerText = "Your tasks for today"
             selectedDayCount.innerText = 1;
         }
-        
+    })
+
+    // Display the calender in the mobile view
+    document.querySelector('.display-calender').addEventListener('click', () =>{
+        document.querySelector('.calendar-container').classList.add('show');
     })
    
 }
