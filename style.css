@@ -38,6 +38,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--dark-background);
+    height: 80vh;
 }
 
 /* <==================================>  styling todo container  <==================================>*/
@@ -79,6 +80,11 @@ button {
 
 /* add to do container display none */
 .addTodo-container{
+    display: none;
+}
+
+/* add to do container display flex */
+.addTodo-container.show {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,20 +92,14 @@ button {
     border: .1em solid rgb(70, 135, 179);
     box-shadow: 0px 0px 1px 2px rgb(70, 135, 179);
     border-radius: 1em;
-    display: none;
-    max-width: 300px;
+    max-width: 400px;
     position: absolute;
     top: 0;
-    left: .5em;
+    left: 1em;
     right: 0.5em;
     background: var(--dark-background);
     color: #f1f1f1;
     height: 130px;
-}
-
-/* add to do container display flex */
-.addTodo-container.show {
-    display: flex;
 }
 
 .addTodo-container > div {
@@ -142,7 +142,7 @@ button {
 }
 .addTodo-btn {
     font-size: 1.5em;
-    padding: .2em;
+    padding: .5em;
     width: 30px;
     cursor: pointer;
 }
@@ -156,6 +156,8 @@ button {
     width: auto;
     margin-left: .5em;
     font-weight: bolder;
+    color: rgb(245, 88, 88);
+    padding: .5em
 }
 .cancel:hover{
     background: rgb(199, 56, 20);
@@ -328,7 +330,7 @@ button {
     opacity: .5;
 }
 .month-days .today {
-    background-color: rgb(18, 179, 82);
+    background-color: rgb(18, 179, 80);
 }
 
 /* style for the selected day */
@@ -359,7 +361,7 @@ button {
         max-width: 400px;
     }
     .todo-inp {
-        min-width: 200px;
+        min-width: 100px;
     }
     .main-sid {
         flex-basis: 100%;

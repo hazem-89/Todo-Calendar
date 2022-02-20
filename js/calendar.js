@@ -102,6 +102,7 @@ window.addEventListener('load',
                  currDay.appendChild(todoCountDisplay);
               }
               if (currYear === year && currMonth === month && currDay === i) {
+                  console.log(i);
                 currDay.classList.add('today')
                 document.querySelector('.todo-count').classList.add('todayTodos');
             }
