@@ -101,7 +101,7 @@ window.addEventListener('load',
                  todoCountDisplay.innerText =  Object.keys(todoStore[dateString]).length;
                  currDay.appendChild(todoCountDisplay);
               }
-              if (currYear === year && currMonth === month && currDate === i) {
+              if (currYear === year && currMonth === month && currDay === i) {
                 currDay.classList.add('today')
                 document.querySelector('.todo-count').classList.add('todayTodos');
             }
